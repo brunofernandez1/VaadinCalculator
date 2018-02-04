@@ -1,5 +1,8 @@
 package VaadinCalculator;
 
+// the presenter implements the CalculatorViewListener to have the method buttonclick
+// with this, the view hasn't to know anything about the view
+// the view is an observable and the presenter an observer
 class CalculatorPresenter
         implements CalculatorView.CalculatorViewListener {
     CalculatorModel model;
@@ -8,6 +11,7 @@ class CalculatorPresenter
     private double current = 0.0;
     private char   lastOperationRequested = 'C';
 
+    //prenster should have a model and a view in the constructor
     public CalculatorPresenter(CalculatorModel model,
                                CalculatorView  view) {
         this.model = model;
@@ -17,6 +21,8 @@ class CalculatorPresenter
         view.addListener(this);
     }
 
+    //this is the override of the nested CalculatorViewListener interface
+    //the view calls this method on the listeners(observer)
     @Override
     public void buttonClick(char operation) {
         // Handle digit input
